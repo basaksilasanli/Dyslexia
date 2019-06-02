@@ -11,11 +11,11 @@ class Login extends Component {
     render() {
         return (
             <View style={styles.view_main}>
-                
+
                 <View style={styles.view_image}>
                     <Image style={styles.image} source={logo} />
                 </View>
-                
+
                 <Form style={styles.form}>
                     <Item floatingLabel>
                         <Icon active name='mail' style={styles.icon} />
@@ -29,12 +29,18 @@ class Login extends Component {
                     </Item>
                 </Form>
 
+                <View style={styles.view_forgotPassword}>
+                    <TouchableOpacity onPress={() => Actions.forgotPassword()}>
+                        <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
+                    </TouchableOpacity>
+                </View>
+
                 <Item style={styles.item}>
                     <Button style={styles.button} success>
                         <Text style={styles.buttonText}>Login</Text>
                     </Button>
                 </Item>
-                    
+
                 <View style={styles.view_touchableText}>
                     <Text style={styles.text}>Don't have an account?</Text>
                     <TouchableOpacity onPress={() => Actions.register()}>
@@ -56,33 +62,42 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-    view_image: { 
+    view_image: {
         justifyContent: 'center',
         alignItems: 'center',
         width: width,
-        height: height * 0.1 
+        height: height * 0.1
     },
-    form: { 
+    form: {
         width: width * 0.8
     },
     image: {
         height: 100,
         width: 200,
-        marginBottom: 20 
+        marginBottom: 20
     },
-    button: { 
+    button: {
         width: width * 0.8,
         justifyContent: 'center',
         borderRadius: 5
     },
     icon: {
-        paddingTop: 18 
+        paddingTop: 18
     },
     label: {
         fontSize: 14
     },
     item: {
         marginTop: 30
+    },
+    view_forgotPassword: {
+        width: width,
+        marginTop: 15,
+        marginRight: 78,
+        alignItems: 'flex-end',
+    },
+    forgotPasswordText: {
+        color: 'blue'
     },
     buttonText: {
         color: 'white',
