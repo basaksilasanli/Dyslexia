@@ -1,1 +1,1 @@
-export * from './PostsActions'
+export * from './AuthActions'

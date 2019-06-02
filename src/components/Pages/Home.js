@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 
 import { connect } from 'react-redux';
-import { getPosts } from '../actions'
+import { getPosts } from '../../actions'
 
 class Home extends Component {
   
@@ -15,10 +15,10 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = ({ PostsResponse }) => {
-  console.log('PostResponse:', PostsResponse)
+const mapStateToProps = ({ AuthResponse }) => {
+  console.log('AuthResponse:', AuthResponse)
   return { 
-    posts: PostsResponse.posts
+    posts: AuthResponse.posts
     
   }
 };
