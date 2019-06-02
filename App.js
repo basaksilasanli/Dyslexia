@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
-
 import Router from './src/Router'
 
 import {createStore,applyMiddleware} from 'redux'
@@ -17,8 +15,6 @@ export default class App extends Component {
       <Provider store = {store}>
         <Router/>
       </Provider>
-      
-      
     );
   }
 }
