@@ -43,7 +43,7 @@ export default class componentName extends Component {
                         <Scene
                             key='home'
                             title="Home"
-                            
+                            initial
                             component={Home} />
                     </Drawer>
                 </Stack>

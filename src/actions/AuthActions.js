@@ -22,7 +22,7 @@ export const login = (email, password) => {
                     firebase.firestore().collection('users').doc(userId).get()
                         .then(userData => {
                             dispatch({ type: LOGIN_SUCCESS, payload: userData._data });
-                            Actions.reset('home');
+                            Actions.reset('drawerMenu');
                         }).catch(error => console.log("HATA: " + error))
                 }).catch(error => {
                     console.log(error);
