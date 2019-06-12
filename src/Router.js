@@ -43,6 +43,7 @@ export default class componentName extends Component {
                         drawerWidth={drawerWidth}
                         drawerPosition="left"
                         drawerIcon={icon}
+                        initial
                     >
                         <Scene
                             key='home'
