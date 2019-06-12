@@ -13,10 +13,9 @@ export const uploadPhoto = (uri, contentType = 'image/jpeg') => {
         try {
             Actions.pop();
             dispatch({ type: UPLOAD_START });
-
             const userId = firebase.auth().currentUser.uid;
             const photoId = await uniqueIdGenerator();
-
+            
             const snapshot = await firebase.storage().ref()
                 .child(`/photos/${userId}`)
                 .child(photoId)

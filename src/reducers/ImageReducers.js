@@ -11,7 +11,7 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, { type, payload }) => {
     switch (type) {
-        case UPLOAD_START, GET_PHOTOS_START:
+        case UPLOAD_START:
             return { ...state, loading: true }
         case UPLOAD_SUCCESS:
             return { ...state, data: [...state.data, payload], loading: false };

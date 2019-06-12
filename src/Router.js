@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
 import { Icon } from 'native-base';
-import { Router, Scene, Stack, Actions, Drawer } from 'react-native-router-flux';
+import { Router, Scene, Stack,  Drawer } from 'react-native-router-flux';
 import { Login, Register, ForgotPassword } from './components/Onboarding';
 import { Home, Profile, Result, Test, Menu } from './components/Pages'
 
 const drawerWidth = Dimensions.get('window').width * 0.7
 
 const icon = () => {
-    return <Icon name='menu' />
+    return <Icon name='menu' style={{color:'white'}} />
 }
 
 export default class componentName extends Component {
@@ -43,11 +43,13 @@ export default class componentName extends Component {
                         drawerWidth={drawerWidth}
                         drawerPosition="left"
                         drawerIcon={icon}
+                        
                     >
                         <Scene
                             key='home'
                             title="Home"
-                            component={Home} />
+                            component={Home}
+                             />
                         <Scene
                             key='profile'
                             title="Profile"
@@ -61,7 +63,7 @@ export default class componentName extends Component {
 
 const styles = StyleSheet.create({
     navigationBarStyle: {
-        backgroundColor: 'red',
+        backgroundColor: '#aec4c7',
     },
     navigationBarTitleStyle: {
         color: 'white',

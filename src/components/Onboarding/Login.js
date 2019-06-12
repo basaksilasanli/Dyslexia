@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Dimensions, Image, TouchableOpacity, SafeAreaView } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { Button, Item, Input, Icon, Label, Form, Spinner } from 'native-base';
+import {Item, Input, Icon, Label, Form, Spinner } from 'native-base';
 import logo from '../../img/logo.png'
 import { colors } from '../../Style';
 import { connect } from 'react-redux';
 import { login } from '../../actions/AuthActions';
+import Button from '../global/Button'
 
 const { width, height } = Dimensions.get('window');
 
@@ -46,11 +47,9 @@ class Login extends Component {
                                 </TouchableOpacity>
                             </View>
 
-                            <Item style={styles.item}>
-                                <Button onPress={() => this.props.login(email.trim(), password)} style={styles.button} success>
-                                    <Text style={styles.buttonText}>Login</Text>
-                                </Button>
-                            </Item>
+                          
+                            <Button handleButton={() => this.props.login(email.trim(), password)} style={styles.button} buttonName = 'Login'/>
+                           
 
                             <View style={styles.view_touchableText}>
                                 <Text style={styles.text}>Don't have an account?</Text>
@@ -93,11 +92,7 @@ const styles = StyleSheet.create({
         width: 200,
         marginBottom: 20
     },
-    button: {
-        width: width * 0.8,
-        justifyContent: 'center',
-        borderRadius: 5
-    },
+    
     icon: {
         paddingTop: 18
     },
@@ -112,9 +107,12 @@ const styles = StyleSheet.create({
         marginTop: 15,
         marginRight: 78,
         alignItems: 'flex-end',
+        marginBottom: 20
     },
     forgotPasswordText: {
-        color: 'blue'
+        color: '#009faf',
+        fontWeight: 'bold'
+        
     },
     buttonText: {
         color: 'white',
@@ -128,7 +126,8 @@ const styles = StyleSheet.create({
         color: 'black'
     },
     touchableText: {
-        color: 'blue'
+        color: '#009faf',
+        fontWeight: 'bold'
     }
 })
 
