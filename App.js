@@ -7,7 +7,6 @@ import ReduxThunk from 'redux-thunk'
 import logger from 'redux-logger'
 import reducers from './src/reducers'
 
-
 export default class App extends Component {
   render() {
     const store = createStore(reducers, {}, applyMiddleware(ReduxThunk,logger))
