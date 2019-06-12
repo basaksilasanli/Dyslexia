@@ -1,34 +1,69 @@
 import React, { Component } from 'react';
-import {Router, Scene, Tabs } from 'react-native-router-flux'
+import { StyleSheet, Dimensions } from 'react-native';
+import { Icon } from 'native-base';
+import { Router, Scene, Stack, Actions, Drawer } from 'react-native-router-flux';
+import { Login, Register, ForgotPassword } from './components/Onboarding';
+import { Home, Profile, Result, Test, Menu } from './components/Pages'
 
-import Home from './components/Pages/Home';
-import Profile from './components/Pages/Profile';
+const drawerWidth = Dimensions.get('window').width * 0.7
 
-import TabIcon from './components/global/TabBarIcons'
-
+const icon = () => {
+    return <Icon name='menu' />
+}
 
 export default class componentName extends Component {
-  render() {
-    return (
-      <Router>
-          <Tabs>
-              <Scene key = "home"
-                    iconName = "home"
-                    icon = {TabIcon}
-                    component = {Home}
-                    title = "Home"
-                    initial
-              />
-      
-              <Scene key = "profile"
-                    iconName = "user"
-                    icon = {TabIcon}
-                    component = {Profile}
-                    title = "Profile"
-              />
+    render() {
+        return (
+            <Router
+                navigationBarStyle={styles.navigationBarStyle}
+                titleStyle={styles.navigationBarTitleStyle}
+                sceneStyle={{ backgroundColor: 'white' }}>
+                <Stack key='onboarding'>
+                    <Scene
+                        key='login'
+                        hideNavBar
+                        component={Login}
+                    />
 
-          </Tabs>
-      </Router>
-    );
-  }
+                    <Scene
+                        key='register'
+                        hideNavBar
+                        component={Register}
+                    />
+
+                    <Scene
+                        key='forgotPassword'
+                        hideNavBar
+                        component={ForgotPassword} />
+
+                    <Drawer
+                        hideNavBar
+                        key="drawerMenu"
+                        contentComponent={Menu}
+                        drawerWidth={drawerWidth}
+                        drawerPosition="left"
+                        drawerIcon={icon}
+                    >
+                        <Scene
+                            key='home'
+                            title="Home"
+                            component={Home} />
+                        <Scene
+                            key='profile'
+                            title="Profile"
+                            component={Profile} />
+                    </Drawer>
+                </Stack>
+            </Router>
+        );
+    }
 }
+
+const styles = StyleSheet.create({
+    navigationBarStyle: {
+        backgroundColor: 'red',
+    },
+    navigationBarTitleStyle: {
+        color: 'white',
+    },
+})

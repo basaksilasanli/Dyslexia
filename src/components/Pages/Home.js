@@ -15,11 +15,8 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = ({ AuthResponse }) => {
-  console.log('AuthResponse:', AuthResponse)
-  return { 
-    posts: AuthResponse.posts
-    
-  }
+const mapStateToProps = ({ authResponse }) => {
+  console.log('authResponse:', authResponse)
+  return { user: authResponse.user }
 };
-export default connect(mapStateToProps,{ getPosts })(Home);
+export default connect(mapStateToProps,{})(Home);
