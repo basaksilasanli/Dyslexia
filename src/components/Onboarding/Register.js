@@ -4,11 +4,22 @@ import { Actions } from 'react-native-router-flux';
 import { Button, Item } from 'native-base';
 import { colors } from '../../Style';
 import logo from '../../img/logo.png'
+import { connect } from 'react-redux';
+import { register } from '../../actions';
 
 const { width, height } = Dimensions.get('window');
 
 class Register extends Component {
+    
+    state = {
+        email: '',
+        password: '',
+        age: '',
+        name: '',
+    }
+
     render() {
+        let {email, password, name, age} = this.state;
         return (
             <View style={styles.view_main}>
 
@@ -17,14 +28,14 @@ class Register extends Component {
                 </View>
 
                 <View style={styles.view_input}>
-                    <TextInput  maxLength={30} placeholder='Name' style={styles.textInput}></TextInput>
-                    <TextInput  maxLength={30} placeholder='Age' style={styles.textInput}></TextInput>
-                    <TextInput  maxLength={30} placeholder='Email' style={styles.textInput}></TextInput>
-                    <TextInput  maxLength={30} placeholder='Password' style={styles.textInput}></TextInput>
+                    <TextInput value={name} onChangeText= { (name) => this.setState({name}) } maxLength={30} placeholder='Name' style={styles.textInput}></TextInput>
+                    <TextInput value={age} onChangeText= { (age) => this.setState({age}) } maxLength={30} placeholder='Age' style={styles.textInput}></TextInput>
+                    <TextInput value={email} onChangeText= { (email) => this.setState({email}) } maxLength={30} placeholder='Email' style={styles.textInput}></TextInput>
+                    <TextInput value={password} onChangeText= { (password) => this.setState({password}) } maxLength={30} placeholder='Password' style={styles.textInput} secureTextEntry></TextInput>
                 </View>
 
                 <Item style={styles.item}>
-                    <Button style={styles.button} success>
+                    <Button onPress={() => this.props.register(email.trim(), password, age.trim(), name.trim())} style={styles.button} success>
                         <Text style={styles.buttonText}>Create Account</Text>
                     </Button>
                 </Item>
@@ -81,4 +92,9 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Register;
+
+const mapStateToProps = ({ authResponse }) => {
+    return { loading: authResponse.loading };
+}
+
+export default connect(mapStateToProps, { register })(Register);

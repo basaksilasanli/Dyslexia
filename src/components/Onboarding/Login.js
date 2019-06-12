@@ -1,62 +1,79 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Dimensions, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Image, TouchableOpacity, SafeAreaView } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { Button, Item, Input, Icon, Label, Form } from 'native-base';
+import { Button, Item, Input, Icon, Label, Form, Spinner } from 'native-base';
 import logo from '../../img/logo.png'
 import { colors } from '../../Style';
+import { connect } from 'react-redux';
+import { login } from '../../actions/AuthActions';
 
 const { width, height } = Dimensions.get('window');
 
 class Login extends Component {
+
+    state = {
+        email: '',
+        password: ''
+    }
+
     render() {
+        let { email, password } = this.state;
         return (
-            <View style={styles.view_main}>
+            <SafeAreaView style={styles.view_main}>
+                {
+                    this.props.loading ? <Spinner color='green' /> :
+                        <View style={styles.contanier}>
+                            <View style={styles.view_image}>
+                                <Image style={styles.image} source={logo} />
+                            </View>
 
-                <View style={styles.view_image}>
-                    <Image style={styles.image} source={logo} />
-                </View>
+                            <Form style={styles.form}>
+                                <Item floatingLabel>
+                                    <Icon active name='mail' style={styles.icon} />
+                                    <Label style={styles.label}>Email</Label>
+                                    <Input value={email} onChangeText={(email) => this.setState({ email })} />
+                                </Item>
+                                <Item floatingLabel>
+                                    <Icon active name='key' style={styles.icon} />
+                                    <Label style={styles.label}>Password</Label>
+                                    <Input value={password} onChangeText={(password) => this.setState({ password })} secureTextEntry />
+                                </Item>
+                            </Form>
 
-                <Form style={styles.form}>
-                    <Item floatingLabel>
-                        <Icon active name='mail' style={styles.icon} />
-                        <Label style={styles.label}>Email</Label>
-                        <Input />
-                    </Item>
-                    <Item floatingLabel >
-                        <Icon active name='key' style={styles.icon} />
-                        <Label style={styles.label}>Password</Label>
-                        <Input />
-                    </Item>
-                </Form>
+                            <View style={styles.view_forgotPassword}>
+                                <TouchableOpacity onPress={() => Actions.forgotPassword()}>
+                                    <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
+                                </TouchableOpacity>
+                            </View>
 
-                <View style={styles.view_forgotPassword}>
-                    <TouchableOpacity onPress={() => Actions.forgotPassword()}>
-                        <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
-                    </TouchableOpacity>
-                </View>
+                            <Item style={styles.item}>
+                                <Button onPress={() => this.props.login(email.trim(), password)} style={styles.button} success>
+                                    <Text style={styles.buttonText}>Login</Text>
+                                </Button>
+                            </Item>
 
-                <Item style={styles.item}>
-                    <Button style={styles.button} success>
-                        <Text style={styles.buttonText}>Login</Text>
-                    </Button>
-                </Item>
+                            <View style={styles.view_touchableText}>
+                                <Text style={styles.text}>Don't have an account?</Text>
+                                <TouchableOpacity onPress={() => Actions.register()}>
+                                    <Text style={styles.touchableText}>Create new account</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
 
-                <View style={styles.view_touchableText}>
-                    <Text style={styles.text}>Don't have an account?</Text>
-                    <TouchableOpacity onPress={() => Actions.register()}>
-                        <Text style={styles.touchableText}>Create new account</Text>
-                    </TouchableOpacity>
-                </View>
+                }
+            </SafeAreaView>
 
-            </View>
         );
     }
 }
 
-export default Login;
-
 const styles = StyleSheet.create({
     view_main: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    contanier: {
         flex: 1,
         backgroundColor: colors.main,
         justifyContent: 'center',
@@ -114,3 +131,10 @@ const styles = StyleSheet.create({
         color: 'blue'
     }
 })
+
+
+const mapStateToProps = ({ authResponse }) => {
+    return ({ loading: authResponse.loading })
+}
+
+export default connect(mapStateToProps, { login })(Login);
