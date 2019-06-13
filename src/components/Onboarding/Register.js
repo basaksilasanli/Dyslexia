@@ -1,46 +1,41 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Dimensions, Image, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Image, TextInput, SafeAreaView } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { Button, Item } from 'native-base';
+import { Item } from 'native-base';
 import { colors } from '../../Style';
 import logo from '../../img/logo.png'
 import { connect } from 'react-redux';
 import { register } from '../../actions';
+import Button from '../global/Button'
 
 const { width, height } = Dimensions.get('window');
 
 class Register extends Component {
-    
+
     state = {
         email: '',
         password: '',
-        age: '',
         name: '',
     }
 
     render() {
-        let {email, password, name, age} = this.state;
+        let { email, password, name } = this.state;
         return (
-            <View style={styles.view_main}>
-
+            <SafeAreaView style={styles.view_main}>
+   
                 <View style={styles.view_image}>
                     <Image style={styles.image} source={logo} />
                 </View>
 
                 <View style={styles.view_input}>
-                    <TextInput value={name} onChangeText= { (name) => this.setState({name}) } maxLength={30} placeholder='Name' style={styles.textInput}></TextInput>
-                    <TextInput value={age} onChangeText= { (age) => this.setState({age}) } maxLength={30} placeholder='Age' style={styles.textInput}></TextInput>
-                    <TextInput value={email} onChangeText= { (email) => this.setState({email}) } maxLength={30} placeholder='Email' style={styles.textInput}></TextInput>
-                    <TextInput value={password} onChangeText= { (password) => this.setState({password}) } maxLength={30} placeholder='Password' style={styles.textInput} secureTextEntry></TextInput>
+                    <TextInput value={name} onChangeText={(name) => this.setState({ name })} maxLength={30} placeholder='Name' style={styles.textInput}></TextInput>
+                    <TextInput value={email} onChangeText={(email) => this.setState({ email })} maxLength={30} placeholder='Email' style={styles.textInput}></TextInput>
+                    <TextInput value={password} onChangeText={(password) => this.setState({ password })} maxLength={30} placeholder='Password' style={styles.textInput} secureTextEntry></TextInput>
                 </View>
 
-                <Item style={styles.item}>
-                    <Button onPress={() => this.props.register(email.trim(), password, age.trim(), name.trim())} style={styles.button} success>
-                        <Text style={styles.buttonText}>Create Account</Text>
-                    </Button>
-                </Item>
+                <Button handleButton={() => this.props.register(email.trim(), password, name.trim())} buttonName='Create Account' style={styles.button} />      
 
-            </View>
+            </SafeAreaView>
         );
     }
 }
@@ -48,9 +43,9 @@ class Register extends Component {
 const styles = StyleSheet.create({
     view_main: {
         flex: 1,
-        backgroundColor: colors.main ,
+        backgroundColor: colors.main,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     view_image: {
         justifyContent: 'center',
@@ -59,14 +54,16 @@ const styles = StyleSheet.create({
         height: height * 0.1
     },
     image: {
+        marginTop: 80,
         height: 100,
         width: 200,
-        marginBottom: 60 
+        marginBottom: 90
     },
     view_input: {
         paddingTop: 5,
         height: height * 0.25,
         justifyContent: 'center',
+        marginBottom: 20
     },
     textInput: {
         backgroundColor: '#ffffff',
@@ -83,13 +80,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 5
     },
-    buttonText: {
-        color: 'white',
-        fontSize: 18
-    },
-    item: {
-        marginTop: 50
-    }
 })
 
 

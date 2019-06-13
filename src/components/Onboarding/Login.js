@@ -48,8 +48,7 @@ class Login extends Component {
                             </View>
 
                           
-                            <Button handleButton={() => this.props.login(email.trim(), password)} style={styles.button} buttonName = 'Login'/>
-                           
+                            <Button handleButton={() => this.props.login(email.trim(), password)} buttonName = 'Login'/>
 
                             <View style={styles.view_touchableText}>
                                 <Text style={styles.text}>Don't have an account?</Text>
@@ -68,7 +67,8 @@ class Login extends Component {
 
 const styles = StyleSheet.create({
     view_main: {
-        flex: 1,
+        width: width,
+        height: height,
         justifyContent: 'center',
         alignItems: 'center'
     },

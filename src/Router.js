@@ -1,17 +1,25 @@
 import React, { Component } from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
 import { Icon } from 'native-base';
-import { Router, Scene, Stack,  Drawer } from 'react-native-router-flux';
+import { Router, Scene, Stack, Drawer, Actions } from 'react-native-router-flux';
 import { Login, Register, ForgotPassword } from './components/Onboarding';
 import { Home, Profile, Result, Test, Menu } from './components/Pages'
+import { colors } from '../src/Style';
 
 const drawerWidth = Dimensions.get('window').width * 0.7
 
 const icon = () => {
-    return <Icon name='menu' style={{color:'white'}} />
+    return <Icon name='menu' style={{ color: 'white' }} />
 }
 
 export default class componentName extends Component {
+
+    renderLeft() {
+        return (
+            <Icon name="arrow-round-back" style={{ marginLeft: 20 }} onPress={() => Actions.pop()} />
+        )
+    }
+
     render() {
         return (
             <Router
@@ -19,6 +27,12 @@ export default class componentName extends Component {
                 titleStyle={styles.navigationBarTitleStyle}
                 sceneStyle={{ backgroundColor: 'white' }}>
                 <Stack key='onboarding'>
+                    {/* <Scene
+                        key="splashScreen"
+                        component={SplashScreen}
+                        hideNavBar
+                    /> */}
+
                     <Scene
                         key='login'
                         hideNavBar
@@ -27,8 +41,8 @@ export default class componentName extends Component {
 
                     <Scene
                         key='register'
-                        hideNavBar
                         component={Register}
+                        renderLeftButton={this.renderLeft}
                     />
 
                     <Scene
@@ -43,13 +57,12 @@ export default class componentName extends Component {
                         drawerWidth={drawerWidth}
                         drawerPosition="left"
                         drawerIcon={icon}
-                        
                     >
                         <Scene
                             key='home'
                             title="Home"
                             component={Home}
-                             />
+                        />
                         <Scene
                             key='profile'
                             title="Profile"
@@ -63,7 +76,9 @@ export default class componentName extends Component {
 
 const styles = StyleSheet.create({
     navigationBarStyle: {
-        backgroundColor: '#aec4c7',
+        backgroundColor: colors.main,
+        borderBottomWidth: 0, 
+        elevation: 0
     },
     navigationBarTitleStyle: {
         color: 'white',

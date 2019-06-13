@@ -35,7 +35,7 @@ export const login = (email, password) => {
     }
 }
 
-export const register = (email, password, age, name) => {
+export const register = (email, password, name) => {
     return (dispatch) => {
         if (validate(email, password, age, name)) {
             dispatch({ type: REGISTER_START });
@@ -45,7 +45,7 @@ export const register = (email, password, age, name) => {
                     dispatch({ type: REGISTER_SUCCESS });
                     const id = user.user._user.uid;
 
-                    firebase.firestore().collection('users').doc(id).set({ name, email, password, age })
+                    firebase.firestore().collection('users').doc(id).set({ name, email, password })
                         .then(success => console.log("Kayıt başarılı: ", success))
                         .catch(error => console.log("Kayıt başarısız" + error));
 
