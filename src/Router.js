@@ -9,7 +9,7 @@ import { colors } from '../src/Style';
 const drawerWidth = Dimensions.get('window').width * 0.7
 
 const icon = () => {
-    return <Icon name='menu' style={{ color: 'white' }} />
+    return <Icon name='menu' style={{ color: '#009faf' }} />
 }
 
 export default class componentName extends Component {
@@ -33,7 +33,7 @@ export default class componentName extends Component {
                         hideNavBar
                     /> */}
 
-                    <Scene
+                    {/* <Scene
                         key='login'
                         hideNavBar
                         component={Login}
@@ -48,7 +48,7 @@ export default class componentName extends Component {
                     <Scene
                         key='forgotPassword'
                         hideNavBar
-                        component={ForgotPassword} />
+                        component={ForgotPassword} /> */}
 
                     <Drawer
                         hideNavBar
@@ -76,11 +76,11 @@ export default class componentName extends Component {
 
 const styles = StyleSheet.create({
     navigationBarStyle: {
-        backgroundColor: colors.main,
-        borderBottomWidth: 0, 
+        backgroundColor: '#e0f7fa',
+        borderBottomWidth: 0,
         elevation: 0
     },
     navigationBarTitleStyle: {
-        color: 'white',
+        color: '#009faf',
     },
 })

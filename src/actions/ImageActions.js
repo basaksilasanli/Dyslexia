@@ -8,14 +8,13 @@ import { Actions } from 'react-native-router-flux';
 import { uniqueIdGenerator } from '../helpers/UniqueIdGenerator';
 
 
-export const uploadPhoto = (uri, contentType = 'image/jpeg') => {
+export const uploadPhoto = (uri, firstName, surName, age, contentType = 'image/jpeg') => {
     return async dispatch => {
         try {
-            Actions.pop();
             dispatch({ type: UPLOAD_START });
             const userId = firebase.auth().currentUser.uid;
             const photoId = await uniqueIdGenerator();
-            
+
             const snapshot = await firebase.storage().ref()
                 .child(`/photos/${userId}`)
                 .child(photoId)
@@ -23,8 +22,8 @@ export const uploadPhoto = (uri, contentType = 'image/jpeg') => {
 
             await firebase.firestore()
                 .collection('users').doc(userId)
-                .collection('photos').doc(photoId)
-                .set({ url: snapshot.downloadURL });
+                .collection('records').doc(photoId)
+                .set({ url: snapshot.downloadURL, firstName, surName, age });
 
             dispatch({ type: UPLOAD_SUCCESS, payload: { url: snapshot.downloadURL, id: photoId } });
         }
