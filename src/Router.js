@@ -57,6 +57,7 @@ export default class componentName extends Component {
                         drawerWidth={drawerWidth}
                         drawerPosition="left"
                         drawerIcon={icon}
+                        initial
                     >
                         <Scene
                             key='home'
@@ -66,7 +67,8 @@ export default class componentName extends Component {
                         <Scene
                             key='profile'
                             title="Profile"
-                            component={Profile} />
+                            component={Profile}
+                             />
                     </Drawer>
                 </Stack>
             </Router>
