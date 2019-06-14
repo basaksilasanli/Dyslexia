@@ -121,7 +121,7 @@ class Home extends Component {
           </Container>
         </Modal>
 
-        <View style={{ flex: 2, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{ flex: 2, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 20 }}>
           <Image style={styles.imageStyle} source={img} />
         </View>
 

@@ -33,7 +33,7 @@ export default class componentName extends Component {
                 sceneStyle={{ backgroundColor: 'white' }}>
                 <Stack key='onboarding'>
 
-                    {/* <Scene
+                    <Scene
                         key='login'
                         hideNavBar
                         component={Login}
@@ -48,7 +48,7 @@ export default class componentName extends Component {
                     <Scene
                         key='forgotPassword'
                         hideNavBar
-                        component={ForgotPassword} /> */}
+                        component={ForgotPassword} />
 
                     <Drawer
                         hideNavBar
