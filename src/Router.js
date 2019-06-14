@@ -3,7 +3,8 @@ import { StyleSheet, Dimensions } from 'react-native';
 import { Icon } from 'native-base';
 import { Router, Scene, Stack, Drawer, Actions } from 'react-native-router-flux';
 import { Login, Register, ForgotPassword } from './components/Onboarding';
-import { Home, Profile, Result, Test, Menu } from './components/Pages'
+import { Home, Profile, Result, Test, Menu } from './components/Pages';
+import SplashScreen from 'react-native-splash-screen';
 import { colors } from '../src/Style';
 
 const drawerWidth = Dimensions.get('window').width * 0.7
@@ -13,6 +14,10 @@ const icon = () => {
 }
 
 export default class componentName extends Component {
+
+    componentDidMount(){
+        SplashScreen.hide();
+    }
 
     renderLeft() {
         return (
@@ -27,11 +32,6 @@ export default class componentName extends Component {
                 titleStyle={styles.navigationBarTitleStyle}
                 sceneStyle={{ backgroundColor: 'white' }}>
                 <Stack key='onboarding'>
-                    {/* <Scene
-                        key="splashScreen"
-                        component={SplashScreen}
-                        hideNavBar
-                    /> */}
 
                     <Scene
                         key='login'
